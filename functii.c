@@ -2,6 +2,16 @@
 //cerinta 1
 
 //cerinta 2
+void init_points(teams **first_team,int n)
+{
+        teams *aux=*first_team;
+        for(int i=0;i<n;i++)
+        {
+            team_points(&aux);
+            printf("%f\n",aux->team_points);
+          aux=aux->next;
+        }
+}
 void team_points(teams **team)
 {
     float sum=0;

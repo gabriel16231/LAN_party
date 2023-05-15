@@ -16,12 +16,7 @@ int main()
     //cerinta2
 
         ///adauga la fiecare echipa punctele acesteia
-        teams *aux=first;
-        for(int i=0;i<nr_echipe;i++)
-        {
-            team_points(&aux);
-          aux=aux->next;
-        }
+        init_points(&first,nr_echipe);
         int nr_echipe_fin=det_nr_echipe(nr_echipe);
         float min_points;
         while(nr_echipe!=nr_echipe_fin)
