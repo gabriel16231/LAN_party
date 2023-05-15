@@ -38,6 +38,7 @@ int main()
         }
 
         Teams *aux=first;
+
         //parcurge lista pentru a sterge echipele cu puncte minime
         while(aux->next!=NULL&&nr_echipe!=nr_echipe_fin)
         {
@@ -56,6 +57,9 @@ int main()
 //-------------------------------------
 
 //cerinta 3----------------------------
+
+    Rounds *first_round,*last_round;
+    init_rounds(&first_round,&last_round,first);
 
 
 

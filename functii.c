@@ -71,4 +71,22 @@ float det_min_team(Teams *team,float *min_points)
 }
 
 //cerinta 3
+void make_round(Rounds **last_round,Rounds *new_round,Teams *team)
+{
+    new_round->team1=team;
+    new_round->team2=team->next;
+    *last_round=new_round;
+
+}
+void init_rounds(Rounds **first_round,Rounds **last_round,Teams *first_team)
+{
+
+
+     Teams *current_team=first_team;
+    *first_round=(Rounds*)malloc(sizeof(Rounds));
+    (*first_round)->next=NULL;
+
+    make_round(last_round,*first_round,current_team);
+    printf("%s  -  %s",(*first_round)->team1->team_name,(*first_round)->team2->team_name);
+}
 

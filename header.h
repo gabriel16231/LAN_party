@@ -22,7 +22,8 @@ typedef struct t
 
 typedef struct r
 {
-
+    Teams *team1,*team2;
+    struct r *next;
 }Rounds;
 
 //cerinta 1
