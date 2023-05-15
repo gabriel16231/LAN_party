@@ -23,6 +23,9 @@ teams* read_team(FILE* in);
 players *read_player(FILE *in);
 teams *read(FILE* in,int *nr_echipe);
 void display_teams(teams *first,FILE *out);
+void all_caps(teams **first);
+void name_in_caps(char **name);
+
 
 //cerinta 2
 void team_points(teams **team);
