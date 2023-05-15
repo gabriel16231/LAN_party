@@ -1,32 +1,32 @@
 #include "header.h"
 
-void del_next_node_t(teams **node)
+void del_next_node_t(Teams **node)
 {
 
-    teams *aux=(*node)->next;
+    Teams *aux=(*node)->next;
     (*node)->next=(*node)->next->next;
     free(aux);
 
 }
 
-void del_first_node_t(teams **first)
+void del_first_node_t(Teams **first)
 {
-    teams *aux=*first;
+    Teams *aux=*first;
     *first=(*first)->next;
     free(aux);
 }
 
-void add_at_b_p(players **first,players **node)
+void add_at_b_p(Players **first,Players **node)
 {
-    players* aux;
+    Players* aux;
     aux=*first;
     (*first)=*node;
     (*first)->next=aux;
 }
 
-void add_at_b_t(teams **first,teams **node)
+void add_at_b_t(Teams **first,Teams **node)
 {
-    teams* aux;
+    Teams* aux;
     aux=*first;
     (*first)=*node;
     (*first)->next=aux;

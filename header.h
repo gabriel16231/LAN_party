@@ -9,34 +9,41 @@ typedef struct p
     char *firstname,*secondname;
    float points;
    struct p *next;
-}players;
+}Players;
+
 typedef struct t
 {
     float team_points;
     char *team_name;
     int nr_players;
-    players *player;
+    Players *player;
     struct t *next;
-}teams;
+}Teams;
+
+typedef struct r
+{
+
+}Rounds;
+
 //cerinta 1
-teams* read_team(FILE* in);
-players *read_player(FILE *in);
-teams *read(FILE* in,int *nr_echipe);
-void display_teams(teams *first,FILE *out);
-void all_caps(teams **first);
+Teams* read_team(FILE* in);
+Players *read_player(FILE *in);
+Teams *read(FILE* in,int *nr_echipe);
+void display_teams(Teams *first,FILE *out);
+void all_caps(Teams **first);
 void name_in_caps(char **name);
 
 
 //cerinta 2
-void team_points(teams **team);
+void team_points(Teams **team);
 int det_nr_echipe(int n);
-float det_min_team(teams *team,float *min_points);
+float det_min_team(Teams *team,float *min_points);
 
 
-void del_next_node_t(teams **node);
-void del_first_node_t(teams **first);
-void add_at_b_p(players **first,players **node);
-void add_at_b_t(teams **first,teams **node);
+void del_next_node_t(Teams **node);
+void del_first_node_t(Teams **first);
+void add_at_b_p(Players **first,Players **node);
+void add_at_b_t(Teams **first,Teams **node);
 
 
 

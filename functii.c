@@ -5,9 +5,9 @@ void name_in_caps(char **name)
     for(int i=0;i<strlen(*name);i++)
         *(*name+i)=toupper(*(*name+i));
 }
-void all_caps(teams **first)
+void all_caps(Teams **first)
 {
-    teams *aux=*first;
+    Teams *aux=*first;
     while(aux!=NULL)
     {
         name_in_caps(&aux->team_name);
@@ -15,9 +15,9 @@ void all_caps(teams **first)
     }
 }
 //cerinta 2
-void init_points(teams **first_team)
+void init_points(Teams **first_team)
 {
-        teams *aux=*first_team;
+        Teams *aux=*first_team;
         while(aux!=NULL)
         {
             team_points(&aux);
@@ -25,10 +25,10 @@ void init_points(teams **first_team)
           aux=aux->next;
         }
 }
-void team_points(teams **team)
+void team_points(Teams **team)
 {
     float sum=0;
-    players *aux;
+    Players *aux;
     aux=(*team)->player;
     for(int i=0;i<(*team)->nr_players;i++)
     {
@@ -50,9 +50,9 @@ int det_nr_echipe(int n)
     return nr_echipe_fin;
 }
 
-float det_min_team(teams *team,float *min_points)
+float det_min_team(Teams *team,float *min_points)
 {
-    teams *aux=team;
+    Teams *aux=team;
     float mini;
     mini=team->team_points;
 

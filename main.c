@@ -4,7 +4,7 @@ int main()
 {
     FILE *in,*out;
     int nr_echipe;
-    teams *first;//retine adresa primei echipe
+    Teams *first;//retine adresa primei echipe
 
     in=fopen("d.in","rt");
     out=fopen("r.out","wt");
@@ -37,7 +37,7 @@ int main()
             nr_echipe--;
         }
 
-        teams *aux=first;
+        Teams *aux=first;
         //parcurge lista pentru a sterge echipele cu puncte minime
         while(aux->next!=NULL&&nr_echipe!=nr_echipe_fin)
         {
@@ -53,9 +53,15 @@ int main()
 
     display_teams(first,out);//afisare echipe ramase
 
-//---------------------------
+//-------------------------------------
+
+//cerinta 3----------------------------
 
 
+
+
+
+//-------------------------------------
 
 
 
