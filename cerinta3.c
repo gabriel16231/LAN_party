@@ -4,11 +4,13 @@ void comp_teams(Teams *team1,Teams *team2,Stack **top1,Stack **top2)
 {
     if(team1->team_points>team2->team_points)
         {
+            team1->team_points++;
             add_to_stack(top1,team1);
             add_to_stack(top2,team2);
         }
         else
         {
+            team2->team_points++;
             add_to_stack(top1,team2);
             add_to_stack(top2,team1);
         }
@@ -19,7 +21,7 @@ void det_winners_losers(Rounds **first_round,Rounds **last_round,Stack **winner_
     *loser_top=NULL;
     while(*first_round!=*last_round)
     {
-        comp_teams((*first_round)->team1,(*first_round)->team1,winner_top,loser_top);
+        comp_teams((*first_round)->team1,(*first_round)->team2,winner_top,loser_top);
         del_round(first_round);
     }
 
@@ -28,17 +30,27 @@ void det_winners_losers(Rounds **first_round,Rounds **last_round,Stack **winner_
 
 }
 
-void addall_teams_to_stack(Teams *team,Stack **top)
+void add_to_tail(Rounds **last_match,Teams *team)
 {
-    *top=NULL;
+   Rounds *new_match=(Rounds*)malloc(sizeof(Rounds));
+   new_match->team1=team;
+   new_match->team2=team->next;
+   new_match->next=NULL;
+   if(*last_match!=NULL)
+   (*last_match)->next=new_match;
+   (*last_match)=new_match;
+}
 
-    add_to_stack(top,team);
-    team=team->next;
-
+void addall_teams_to_round(Teams *team,Rounds **first_match,Rounds **last_match)
+{
+    (*last_match)=NULL;
+    add_to_tail(last_match,team);
+    team=team->next->next;
+    (*first_match)=(*last_match);
     while(team!=NULL)
     {
-        add_to_stack(top,team);
-        team=team->next;
+        add_to_tail(last_match,team);
+        team=team->next->next;
     }
 
 }
@@ -89,11 +101,14 @@ void task_3(Teams *first,FILE *out)
     Rounds *first_round,*last_round;
     int round=1;
 
-    addall_teams_to_stack(first,&winners_top);
+    addall_teams_to_round(first,&first_round,&last_round);
+    printf("ok");
 
 
-        Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
-
+        display_round(first_round,round,out);//afisam runda
+        det_winners_losers(&first_round,&last_round,&winners_top,&losers_top);//populam stiva de winners si losers
+        display_winners(winners_top,out,round);//afisam castigatorii rundei
+        printf("ok2");
         while(winners_top->prev!=NULL)
         {
             round++;
