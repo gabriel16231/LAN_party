@@ -2,37 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-
-
-typedef struct p
-{
-    char *firstname,*secondname;
-   float points;
-   struct p *next;
-}Players;
-
-typedef struct t
-{
-    float team_points;
-    char *team_name;
-    int nr_players;
-    Players *player;
-    struct t *next;
-}Teams;
-
-typedef struct r
-{
-    Teams *team1,*team2;
-    struct r *next;
-}Rounds;
+#include "structuri.h"
 
 //cerinta 1
 Teams* read_team(FILE* in);
 Players *read_player(FILE *in);
 Teams *read(FILE* in,int *nr_echipe);
 void display_teams(Teams *first,FILE *out);
-void all_caps(Teams **first);
-void name_in_caps(char **name);
 
 
 //cerinta 2

@@ -11,7 +11,8 @@ int main()
 
 //cerinta 1---------------------
     first=read(in,&nr_echipe);
-    all_caps(&first);
+    printf("cerinta1 done \n");
+    //all_caps(&first);
 //------------------------------
 
 
@@ -53,22 +54,46 @@ int main()
     }
 
     display_teams(first,out);//afisare echipe ramase
+    printf("cerinta2 done\n");
+
+
 
 //-------------------------------------
 
 //cerinta 3----------------------------
 
+    int round=1;
+    Stack *winners_top,*losers_top;
     Rounds *first_round,*last_round;
-    init_rounds(&first_round,&last_round,first);
+
+    addall_teams_to_stack(first,&winners_top);
+    //display_Stack(winners_top);
+    make_rounds(&first_round,&last_round,&winners_top);
+    display_rounds(first_round,round,out);
+    make_winners(&first_round,&last_round,&winners_top,&losers_top);
+    display_winners(winners_top,out,round);
+
+
+        while(winners_top->prev!=NULL)
+        {
+            printf("round%d",round);
+            round++;
+            make_rounds(&first_round,&last_round,&winners_top);
+            display_rounds(first_round,round,out);
+            make_winners(&first_round,&last_round,&winners_top,&losers_top);
+            display_winners(winners_top,out,round);
+
+
+        }
+
+
 
 
 
 
 
 //-------------------------------------
-
-
-
-
     return 0;
 }
+
+
