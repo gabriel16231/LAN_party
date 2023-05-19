@@ -65,7 +65,7 @@ void display_teams(Teams *first,FILE *out)
     }
 }
 
-void display_rounds(Rounds *first_round,int round,FILE *out)
+void display_round(Rounds *first_round,int round,FILE *out)
 {
      fprintf(out,"\n--- ROUND NO:%d\n",round);
     int nr_c;

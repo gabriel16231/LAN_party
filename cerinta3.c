@@ -50,15 +50,15 @@ void makeround(Rounds **last_round,Stack **top)
 
     new_round->team1=get_from_stack(top);
     new_round->team2=get_from_stack(top);
+    new_round->next=NULL;
     if(*last_round!=NULL)
     {
-    new_round->next=NULL;
     (*last_round)->next=new_round;
     }
     *last_round=new_round;
 
 }
-void make_rounds(Rounds **first_round,Rounds **last_round,Stack **top)
+void make_matches(Rounds **first_round,Rounds **last_round,Stack **top)
 {
     (*last_round)=NULL;
 
@@ -77,8 +77,8 @@ void make_rounds(Rounds **first_round,Rounds **last_round,Stack **top)
 }
 void Round(Rounds **first_round,Rounds **last_round,Stack **winners_top,Stack **losers_top,int round,FILE *out)
 {
-    make_rounds(first_round,last_round,winners_top);//extrage din stuva de winners si adauga echipele in coada de meciuri
-    display_rounds(*first_round,round,out);//afisam runda
+    make_matches(first_round,last_round,winners_top);//extrage din stuva de winners si adauga echipele in coada de meciuri
+    display_round(*first_round,round,out);//afisam runda
     det_winners_losers(first_round,last_round,winners_top,losers_top);//populam stiva de winners si losers
     display_winners(*winners_top,out,round);//afisam castigatorii rundei
 }
@@ -94,7 +94,7 @@ void task_3(Teams *first,FILE *out)
 
         Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
 
-        while(winners_top->prev->prev!=NULL)
+        while(winners_top->prev!=NULL)
         {
             round++;
              Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
