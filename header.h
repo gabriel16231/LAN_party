@@ -14,7 +14,7 @@ void display_teams(Teams *first,FILE *out);
 //cerinta 2
 void team_points(Teams **team);
 int det_nr_echipe(int n);
-float det_min_team(Teams *team,float *min_points);
+float det_min_team(Teams *team);
 
 
 void del_next_node_t(Teams **node);
