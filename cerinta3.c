@@ -94,8 +94,21 @@ void Round(Rounds **first_round,Rounds **last_round,Stack **winners_top,Stack **
     det_winners_losers(first_round,last_round,winners_top,losers_top);//populam stiva de winners si losers
     display_winners(*winners_top,out,round);//afisam castigatorii rundei
 }
+void make_top_8(Teams **top_8,Stack *top_teams)
+{
+     *top_8=NULL;
+      while(top_teams!=NULL)
+      {
+          Teams *new_team=(Teams*)malloc(sizeof(Teams));
+          new_team->team_name=top_teams->team->team_name;
+          new_team->team_name=top_teams->team->team_name;
+          new_team->next=(*top_8);
+          (*top_8)=new_team;
 
-void task_3(Teams *first,FILE *out)
+      }
+
+}
+void task_3(Teams *first,FILE *out,int nr_echipe,Teams **top_8)
 {
     Stack *winners_top,*losers_top;
     Rounds *first_round,*last_round;
@@ -103,11 +116,14 @@ void task_3(Teams *first,FILE *out)
 
     addall_teams_to_round(first,&first_round,&last_round);//adauga toate echipele din lista in ocada de match uri
     Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
+    nr_echipe=nr_echipe/2;
 
-    while(winners_top->prev!=NULL)
+    while(nr_echipe!=1)
     {
         round++;
         make_matches(&first_round,&last_round,&winners_top);//extrage din stiva de winners si adauga echipele in coada de meciuri
         Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
+        nr_echipe=nr_echipe/2;
     }
+
 }

@@ -4,6 +4,7 @@ int main()
 {
     FILE *in,*out;
     int nr_echipe;
+    Teams *top_8;
     Teams *first;//retine adresa primei echipe
     in=fopen("d.in","rt");
     out=fopen("r.out","wt");
@@ -12,8 +13,9 @@ int main()
 
     task_2(&first,&nr_echipe,out);
 
-    task_3(first,out);
+    task_3(first,out,nr_echipe,&top_8);
 
+    display_Stack(top_8);
 
 
 
