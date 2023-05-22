@@ -65,7 +65,7 @@ void display_teams(Teams *first,FILE *out)
 }
 void disp_spaces(int nr_c,FILE *out)
 {
-    for(int i=1;i<nr_c;i++)
+    for(int i=0;i<nr_c;i++)
             fprintf(out," ");
 }
 void display_round(Rounds *first_match,int round,FILE *out)
