@@ -1,17 +1,19 @@
 #include "header.h"
 
-int main()
+int main(int argc,char *argv[])
 {
     FILE *in,*out,*in_c;
     int nr_echipe;
     Teams *first,*top_8;//retine adresa primei echipe
     int *cerinta=(int*)malloc(5*sizeof(int ));
-    in_c=fopen("c.in","rt");
-    in=fopen("d.in","rt");
-    out=fopen("r.out","wt");
+    in_c=fopen(argv[1],"r");
+    in=fopen(argv[2],"r");
+    out=fopen(argv[3],"w");
+
     int nr_cerinte=5;
     for (int i=0;i<nr_cerinte;i++)
     fscanf(in_c,"%d",&cerinta[i]);
+    printf("ok");
     first=read(in,&nr_echipe);
     if(cerinta[0]==1&&cerinta[1]==0)
     display_teams(first,out);//afisare echipe ramase
