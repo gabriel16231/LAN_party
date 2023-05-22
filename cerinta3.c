@@ -30,17 +30,6 @@ void det_winners_losers(Rounds **first_round,Rounds **last_round,Stack **winner_
 
 }
 
-void add_to_tail(Rounds **last_match,Teams *team)
-{
-    Rounds *new_match=(Rounds*)malloc(sizeof(Rounds));
-    new_match->team1=team;
-    new_match->team2=team->next;
-    new_match->next=NULL;
-    if(*last_match!=NULL)
-        (*last_match)->next=new_match;
-    (*last_match)=new_match;
-}
-
 void addall_teams_to_round(Teams *team,Rounds **first_match,Rounds **last_match)
 {
     (*last_match)=NULL;
@@ -92,10 +81,29 @@ void Round(Rounds **first_round,Rounds **last_round,Stack **winners_top,Stack **
 
     display_round(*first_round,round,out);//afisam runda
     det_winners_losers(first_round,last_round,winners_top,losers_top);//populam stiva de winners si losers
+    free_stack(losers_top);
     display_winners(*winners_top,out,round);//afisam castigatorii rundei
 }
 
-void task_3(Teams *first,FILE *out)
+void save_top_8(Teams **top_8,Stack *winners)
+{
+    (*top_8)=NULL;
+
+    while(winners!=NULL)
+    {
+
+        Teams *new_node=(Teams*)malloc(sizeof(Teams));
+        new_node->team_name=winners->team->team_name;
+        new_node->team_points=winners->team->team_points;
+        new_node->next=*top_8;
+        *top_8=new_node;
+        winners=winners->prev;
+    }
+    if((*top_8)==NULL)
+        printf("Y?");
+}
+
+void task_3(Teams *first,FILE *out,Teams **top_8,int nr_echipe)
 {
     Stack *winners_top,*losers_top;
     Rounds *first_round,*last_round;
@@ -103,11 +111,16 @@ void task_3(Teams *first,FILE *out)
 
     addall_teams_to_round(first,&first_round,&last_round);//adauga toate echipele din lista in ocada de match uri
     Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
-
-    while(winners_top->prev!=NULL)
+    nr_echipe=nr_echipe/2;
+    while(nr_echipe>1)
     {
+        if(nr_echipe==8)
+           {
+               save_top_8(top_8,winners_top);
+           }
         round++;
         make_matches(&first_round,&last_round,&winners_top);//extrage din stiva de winners si adauga echipele in coada de meciuri
         Round(&first_round,&last_round,&winners_top,&losers_top,round,out);
+        nr_echipe=nr_echipe/2;
     }
 }

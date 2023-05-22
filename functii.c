@@ -17,3 +17,5 @@ Teams *get_from_stack(Stack **top)
 }
 
 
+
+

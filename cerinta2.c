@@ -79,11 +79,11 @@ void del_min_points_teams(int *nr_echipe,int nr_echipe_fin,Teams **first)
     }
 }
 
-void task_2(Teams **first,int **nr_echipe,FILE *out)
+void task_2(Teams **first,int *nr_echipe,FILE *out)
 {
     init_points(first);//calculeaza si adauga punctele  la fiecare echipa
     int nr_echipe_fin=det_nr_echipe(*nr_echipe);//det. nr maxim de echipe
     del_min_points_teams(nr_echipe,nr_echipe_fin,first);
-    display_teams(*first,out);//afisare echipe ramase
+
 }
 

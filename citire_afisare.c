@@ -1,4 +1,3 @@
-
 #include "header.h"
 
 Players *read_player(FILE *in)
@@ -20,7 +19,7 @@ Teams* read_team(FILE* in)
     new_team->team_name=(char*)malloc(50*sizeof(char));
     fgets(new_team->team_name,50*sizeof(char),in);
 
-    new_team->team_name[strlen(new_team->team_name)-1]=NULL;
+    new_team->team_name[strlen(new_team->team_name)-2]='\0';
 
     new_team->player=read_player(in);
     new_team->player->next=NULL;
@@ -64,24 +63,24 @@ void display_teams(Teams *first,FILE *out)
         aux=aux->next;
     }
 }
-
-void display_round(Rounds *first_round,int round,FILE *out)
+void disp_spaces(int nr_c,FILE *out)
+{
+    for(int i=1;i<nr_c;i++)
+            fprintf(out," ");
+}
+void display_round(Rounds *first_match,int round,FILE *out)
 {
      fprintf(out,"\n--- ROUND NO:%d\n",round);
-    int nr_c;
-    while(first_round!=NULL)
+    while(first_match!=NULL)
     {
-        fprintf(out,"%s",first_round->team1->team_name);
-        nr_c=33-strlen(first_round->team1->team_name);
-        for(int i=1;i<nr_c;i++)
-            fprintf(out," ");
+        fprintf(out,"%s",first_match->team1->team_name);
+        disp_spaces(33-strlen(first_match->team1->team_name),out);
         fprintf(out,"-");
-        nr_c=33-strlen(first_round->team2->team_name);
-        for(int i=1;i<nr_c;i++)
-            fprintf(out," ");
-        fprintf(out,"%s",first_round->team2->team_name);
+        disp_spaces(33-strlen(first_match->team2->team_name),out);
+        fprintf(out,"%s",first_match->team2->team_name);
+
         fprintf(out,"\n");
-        first_round=first_round->next;
+        first_match=first_match->next;
     }
 }
 
@@ -91,31 +90,30 @@ void display_winners(Stack *top,FILE *out,int round)
     while(top!=NULL)
     {
        fprintf(out,"%s",top->team->team_name);
-       int nr_spatii=34-strlen(top->team->team_name);
-       for(int i=1;i<nr_spatii;i++)
-        fprintf(out," ");
+       disp_spaces(34-strlen(top->team->team_name),out);
        fprintf(out,"-  %.2f\n",top->team->team_points);
 
        top=top->prev;
     }
 
+
 }
 
-void display_Stack(Stack *top)
+void display_bst(Tree *BST,FILE *out)
 {
+    if(BST!=NULL)
+   {
+       display_bst(BST->right,out);
 
-    while(top!=NULL)
-    {
-       printf("%s",top->team->team_name);
-       int nr_spatii=34-strlen(top->team->team_name);
-       for(int i=1;i<nr_spatii;i++)
-        printf(" ");
-       printf("-  %.2f\n",top->team->team_points);
+       fprintf(out,"%s",BST->team->team_name);
+       disp_spaces(34-strlen(BST->team->team_name),out);
+       fprintf(out,"-  %.2f\n",BST->team->team_points);
 
-       top=top->prev;
-    }
+       display_bst(BST->left,out);
 
+   }
 }
+
 
 
 

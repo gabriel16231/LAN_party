@@ -26,3 +26,10 @@ typedef struct s
     struct s *prev;
 }Stack;
 
+typedef struct tree
+{
+    Teams *team;
+    struct tree *left,*right;
+}Tree;
+
+
