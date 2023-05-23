@@ -8,9 +8,18 @@ void *search_link(Tree **BST,Teams *team)
     }
     else
     {
-        if((*BST)->team->team_points<=team->team_points)
+        if((*BST)->team->team_points==team->team_points)
+        {
+            if(strcmp((*BST)->team->team_name,team->team_name)<0)
+                search_link(&(*BST)->right,team);
+            else
+                search_link(&(*BST)->left,team);
+        }
+        else
+        if((*BST)->team->team_points<team->team_points)
         search_link(&(*BST)->right,team);
     else
+        
         search_link(&(*BST)->left,team);
     }
 }
@@ -27,6 +36,7 @@ void put_in_tree(Teams *node_team,Tree **BST)
 }
 void task_4(Teams **top_8,FILE *out)
 {
+    //display_teams(*top_8,out);
     Tree *BST;
     BST=NULL;
     Teams *aux;

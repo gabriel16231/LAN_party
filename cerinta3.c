@@ -87,20 +87,25 @@ void Round(Rounds **first_round,Rounds **last_round,Stack **winners_top,Stack **
 
 void save_top_8(Teams **top_8,Stack *winners)
 {
-    (*top_8)=NULL;
-
+    Teams *last;
+    Teams *new_node=(Teams*)malloc(sizeof(Teams));
+    new_node->team_name=winners->team->team_name;
+        new_node->team_points=winners->team->team_points;
+        new_node->next=NULL;
+        last=new_node;
+    (*top_8)=last;
+    winners=winners->prev;
     while(winners!=NULL)
     {
 
         Teams *new_node=(Teams*)malloc(sizeof(Teams));
         new_node->team_name=winners->team->team_name;
         new_node->team_points=winners->team->team_points;
-        new_node->next=*top_8;
-        *top_8=new_node;
+        new_node->next=NULL;
+        last->next=new_node;
+        last=new_node;
         winners=winners->prev;
     }
-    if((*top_8)==NULL)
-        printf("Y?");
 }
 
 void task_3(Teams *first,FILE *out,Teams **top_8,int nr_echipe)
