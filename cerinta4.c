@@ -8,10 +8,10 @@ void *search_link(Tree **BST,Teams *team)
     }
     else
     {
-        if((*BST)->team->team_points>team->team_points)
-        search_link(&(*BST)->left,team);
-    else
+        if((*BST)->team->team_points<=team->team_points)
         search_link(&(*BST)->right,team);
+    else
+        search_link(&(*BST)->left,team);
     }
 }
 void put_in_tree(Teams *node_team,Tree **BST)

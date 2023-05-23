@@ -20,6 +20,8 @@ Teams* read_team(FILE* in)
     fgets(new_team->team_name,50*sizeof(char),in);
 
     new_team->team_name[strlen(new_team->team_name)-2]='\0';
+    if(new_team->team_name[strlen(new_team->team_name)-1]==' ')
+    new_team->team_name[strlen(new_team->team_name)-1]='\0';
 
     new_team->player=read_player(in);
     new_team->player->next=NULL;
@@ -65,7 +67,7 @@ void display_teams(Teams *first,FILE *out)
 }
 void disp_spaces(int nr_c,FILE *out)
 {
-    for(int i=0;i<nr_c;i++)
+    for(int i=0.;i<nr_c;i++)
             fprintf(out," ");
 }
 void display_round(Rounds *first_match,int round,FILE *out)

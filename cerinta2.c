@@ -28,7 +28,7 @@ int det_nr_echipe(int n)
 {
     int nr_echipe_fin=1;
 
-    while(nr_echipe_fin*2<n)
+    while(nr_echipe_fin*2<=n)
         nr_echipe_fin*=2;
 
     return nr_echipe_fin;
