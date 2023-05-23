@@ -26,4 +26,24 @@ void free_stack(Stack **top)
     }
 }
 
+void free_teams(Teams **team)
+{
+     if(*team!=NULL)
+    {
+        free_teams(&(*team)->next);
+        free_team(team);
+    }
+}
+
+void free_tree(Tree **tree)
+{
+    if(*tree!=NULL)
+   {
+       free_tree(&(*tree)->right);
+       Tree *aux=(*tree)->left;
+       free(*tree);
+       free_tree(&aux);
+
+   }
+}
 
