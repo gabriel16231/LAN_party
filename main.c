@@ -32,7 +32,7 @@ int main(int argc,char *argv[])
     
     free_team(&top_8);
     free(cerinta);
-    
+    free_trees(&BST);
 //-------------------------------------
     return 0;
 }

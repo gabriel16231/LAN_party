@@ -7,6 +7,8 @@
 void free_players(Players **player);
 void free_team(Teams **team);
 void free_stack(Stack **top);
+void free_trees(Tree **tree);
+void free_teams(Teams **team);
 
 //afisari
 void display_teams(Teams *first,FILE *out);

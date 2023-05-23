@@ -35,14 +35,14 @@ void free_teams(Teams **team)
     }
 }
 
-void free_tree(Tree **tree)
+void free_trees(Tree **tree)
 {
     if(*tree!=NULL)
    {
-       free_tree(&(*tree)->right);
+       free_trees(&(*tree)->right);
        Tree *aux=(*tree)->left;
        free(*tree);
-       free_tree(&aux);
+       free_trees(&aux);
 
    }
 }

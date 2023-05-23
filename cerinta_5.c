@@ -33,4 +33,6 @@ void task_5(Tree *BST,FILE *out)
     fprintf(out,"%s\n",AVL->right->left->team->team_name);
     fprintf(out,"%s\n",AVL->left->right->team->team_name);
     fprintf(out,"%s\n",AVL->left->left->team->team_name);
+    free_trees(&AVL);
+    
 }   
