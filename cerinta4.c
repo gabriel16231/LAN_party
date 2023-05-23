@@ -34,16 +34,13 @@ void put_in_tree(Teams *node_team,Tree **BST)
 
 
 }
-void task_4(Teams **top_8,FILE *out)
+void task_4(Teams **top_8,FILE *out,Tree **BST)
 {
     //display_teams(*top_8,out);
-    Tree *BST;
-    BST=NULL;
-    Teams *aux;
-
-
-    put_in_tree(*top_8,&BST);
+    
+    *BST=NULL;
+    put_in_tree(*top_8,BST);
     fprintf(out,"\nTOP 8 TEAMS:\n");
-    display_bst(BST,out);
+    display_bst(*BST,out);
 
 }

@@ -3,6 +3,7 @@
 int main(int argc,char *argv[])
 {
     FILE *in,*out,*in_c;
+    Tree *BST;
     int nr_echipe;
     Teams *first,*top_8;//retine adresa primei echipe
     int *cerinta=(int*)malloc(5*sizeof(int ));
@@ -25,7 +26,9 @@ int main(int argc,char *argv[])
     if(cerinta[2]==1)
     task_3(first,out,&top_8,nr_echipe);
     if(cerinta[3]==1)
-    task_4(&top_8,out);
+    task_4(&top_8,out,&BST);
+    if(cerinta[4]==1)
+    task_5(BST,out);
     free(cerinta);
 
 

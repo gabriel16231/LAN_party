@@ -57,10 +57,10 @@ void task_3(Teams *first,FILE *out,Teams **top_8,int nr_echipe);
 //
 void *search_link(Tree **BST,Teams *team);
 void put_in_tree(Teams *node_team,Tree **BST);
-void task_4(Teams **top_8,FILE *out);
+void task_4(Teams **top_8,FILE *out,Tree **BST);
 
 
-
+void task_5(Tree *BST,FILE *out);
 
 
 
